@@ -77,7 +77,6 @@ namespace Practice_4
             return option;
         }
 
-
         //// Функция для перевода последоваетльности нулей и единиц в десятичную систему. 
         //static int Transfer(params int[] mas)
         //{
