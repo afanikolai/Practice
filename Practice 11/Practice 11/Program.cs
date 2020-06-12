@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -79,6 +80,8 @@ namespace Practice_11
         }
 
 
+
+
         static void Main(string[] args)
         {
             // Приветствие.
@@ -87,10 +90,11 @@ namespace Practice_11
             Console.WriteLine(hello);
 
             // Описание данных. 
-            string strTxt = "";
-            string newTxt = "";
-            char[,] keyMas = new char[1, 2];
-            Dictionary<char, char> keys = new Dictionary<char, char>();
+            string strTxt = "";     // Исходный текст.
+            string newTxt = "";     // Зашифрованный текст. 
+            string newreTxt = "";   // Дешифрованный текст. 
+            Dictionary<char, char> keys = new Dictionary<char, char>();     // Словарь для шифра.
+            Dictionary<char, char> reKeys = new Dictionary<char, char>();   // Словарь для расшифровки. 
 
 
             // Меню выбора действия. 
@@ -100,6 +104,8 @@ namespace Practice_11
                 int option1 = Menu(hello + "Выберите действие: ", strOptions);
                 switch (option1)
                 {
+
+
                     case 0: // Ввести исходный текст. 
 
 
@@ -136,7 +142,10 @@ namespace Practice_11
                         break;
 
 
+
                     case 1: // Выбрать файл с шифром.
+
+
 
                         try
                         {
@@ -187,12 +196,19 @@ namespace Practice_11
                         break;
 
 
+
                     case 2: // Зашифровать текст.
-                        {
+
+
+                        
                             try
                             {
-                                // Посимвольно перебираем исходный текст. 
-                                foreach (char sym in strTxt)
+
+                            // ------------------------------------------------- Шифровка. -------------------------------------------------
+
+
+                            // Посимвольно перебираем исходный текст. 
+                            foreach (char sym in strTxt)
                                 {
                                     if (keys.ContainsKey(sym)) // Если текущий символ найден в словаре с кодами.
                                     {
@@ -212,8 +228,35 @@ namespace Practice_11
 
                                 // Выводим обработанный текст. 
                                 Console.WriteLine("Обработанный текст: \n\"" + newTxt + "\"");
-                                Console.ReadLine();
+                                Console.WriteLine();
 
+
+                                // ------------------------------------------- Дешифровка. ------------------------------------------------- 
+
+                                // Создать словарь для дешифровки переворотом старого. 
+                                foreach (KeyValuePair<char, char> keyValue in keys)
+                                {
+                                    reKeys.Add(keyValue.Value, keyValue.Key);
+                                }
+
+                                // Посимвольно перебираем исходный текст. 
+                                foreach (char sym in newTxt)
+                                {
+                                    if (reKeys.ContainsKey(sym)) // Если текущий символ найден в словаре с кодами.
+                                    {
+                                        // Шифруем символ.
+                                        newreTxt += reKeys[sym];
+                                    }
+                                    else
+                                    {
+                                        // Если не найден - переносим его в новый текст. 
+                                        newreTxt += sym;
+                                    }
+                                }
+
+                                // Выводим текст. 
+                                Console.WriteLine("Дешифрованный текст: \n\"" + newreTxt + "\"");
+                                Console.ReadLine();
 
 
                             }
@@ -224,15 +267,20 @@ namespace Practice_11
                                 Console.ReadLine();
                                 Environment.Exit(0);
                             }
-                        }
+                        
                         break;
 
 
+
                     case 3: // Выход.
+
+
                         {
                             Environment.Exit(0);
                         }
                         break;
+
+
                 }
 
             }   // Бесконечный цикл. 
