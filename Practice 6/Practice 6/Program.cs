@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,6 +12,22 @@ namespace Practice_6
     //
     class Program
     {
+        // Рекурсивный алгоритм создания последовательности до полного заполнения массива. 
+        public static void Create(ref float[] mas, int i)
+        {
+            //  Вычисляем текущий элемент. 
+            mas[i] = (mas[i - 1] / 3) + (mas[i - 2] / 2) + (2 * mas[i - 3] / 3);
+
+            // Выводим текущий элемент.
+            Console.WriteLine($"{i + 1}-ый элемент: {mas[i]}");
+
+            // Проверка на заполнение массива. 
+            if (i+1 < mas.Length)
+                Create(ref mas, i + 1);
+
+        }
+
+
 
         static void Main(string[] args)
         {
@@ -25,6 +42,7 @@ namespace Practice_6
                 float max;
                 float[] mas = new float[0];
                 string res = "";
+                int count = 0;
 
                 // Ввод данных.
                 Console.WriteLine("Для ввода данных создайте в директории...\\Practice 11\\bin\\Debug текстовый документ и " +
@@ -54,29 +72,21 @@ namespace Practice_6
                 mas[2] = int.Parse(strmas[2]);
                 Console.WriteLine($"3-ый элемент: {mas[2]}");
 
-                if (Math.Abs(mas[1] - mas[0]) < max)
+                
+                // Cоздание последовательности. 
+                Create(ref mas, 3);
+
+
+
+
+                for (int i = 1; i < mas.Length; i++)
                 {
-                    res += $"Элемент №{2};\n";
-                }
-
-                if (Math.Abs(mas[2] - mas[1]) < max)
-                {
-                    res += $"Элемент №{3};\n";
-                }
-
-
-                for (int i = 3; i < mas.Length; i++)
-                {
-                    //  Вычисляем текущий элемент. 
-                    mas[i] = (mas[i - 1] / 3) + (mas[i - 2] / 2) + (2 * mas[i - 3] / 3);
-
-                    // Выводим элемент.
-                    Console.WriteLine($"{i+1}-ый элемент: {mas[i]}");
 
                     // Проверка на условие. 
-                    if (Math.Abs(mas[i] - mas[i-1]) < max)
+                    if (Math.Abs(mas[i] - mas[i - 1]) < max)
                     {
-                        res += $"Элемент №{i+1};\n";
+                        res += $"Элемент №{i + 1};\n";
+                        count++;
                     }
 
                 }
@@ -86,7 +96,7 @@ namespace Practice_6
                 Console.WriteLine();
                 if (res != "")  // Если есть что выводить.
                 {
-                    Console.WriteLine("Условию задачи удовлетворяют следующие члены последовательности: \n" + res);
+                    Console.WriteLine($"Условию задачи удовлетворяют следующие {count} членов последовательности: \n" + res);
                 }
                 else
                 {
