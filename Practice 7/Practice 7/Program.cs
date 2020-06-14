@@ -27,7 +27,7 @@ namespace Practice_7
     //  6   110
     //  7   111
 
-    class Program
+    public class Program
     {
         //  Функция для вычисления монотонности функции.
         public static bool CheckMono(int[] mas)

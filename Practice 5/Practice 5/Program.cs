@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-using System.Threading.Tasks;
-using System.Security.Cryptography;
 
 namespace Practice_5
 {
     class Program
     {
-        // Функция для отрисовки меню. 
         static int Menu(string title, params string[] choiceOptions)    // На вход подается строка с заголовком и строковый массив с пунктами. 
         {
             Console.Clear();
@@ -94,7 +88,6 @@ namespace Practice_5
             matr = matr1;
         }
     
-
     static void DeleteString(ref float[,] matr, int i)
         {
             float[,] matr1 = new float[matr.GetLength(0) - 1, matr.GetLength(1)];
@@ -116,8 +109,6 @@ namespace Practice_5
             return;
         }
 
-
-
         static void PrintMas(ref float[,] matr, string message)
         {
             Console.WriteLine(message);
@@ -136,9 +127,6 @@ namespace Practice_5
 
             Console.ReadLine();
         }
-
-
-
 
         static void Main(string[] args)
         {
@@ -160,7 +148,6 @@ namespace Practice_5
                 switch (option1)
                 {
                     case 0: // Ввести матрицу.
-
 
                         try
                         {
@@ -208,7 +195,6 @@ namespace Practice_5
                             Console.WriteLine("Исходная матрица: ");
                             PrintMas(ref matr, "");
 
-
                         }
                         catch (Exception exception)
                         {
@@ -219,13 +205,6 @@ namespace Practice_5
                         }
 
                         break;
-
-
-
-
-
-
-
 
                     case 1: // Вывести обработанную матрицу.
                         {

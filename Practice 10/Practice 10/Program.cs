@@ -4,19 +4,19 @@ using System.Text;
 
 namespace Practice10
 {
-    public class PointTree
+    public class Tree
     {
         public double data;
 
-        // Адрес левого поддерева
-        public PointTree left;
+        // Адрес левого поддерева.
+        public Tree left;
 
-        // Адрес правого поддерева
-        public PointTree right;
+        // Адрес правого поддерева.
+        public Tree right;
 
         static private Random rand = new Random();
 
-        public PointTree(double num)
+        public Tree(double num)
         {
             data = num;
             left = null;
@@ -28,67 +28,67 @@ namespace Practice10
             return data + " ";
         }
 
-        public static void Print(PointTree p, int l = 0)
+        public static void Print(Tree point, int l = 0)
         {
-            if (p != null)
+            if (point != null)
             {
-                // Переход к левому поддереву
-                Print(p.left, l + 3);
+                // Переход к левому поддереву.
+                Print(point.left, l + 3);
 
                 for (int i = 0; i < l; i++)
                 {
-                    // Создание отступа
+                    // Создание отступа.
                     Console.Write(" ");
                 }
 
-                // Печать узла
-                Console.WriteLine(p.data);
+                // Печать узла.
+                Console.WriteLine(point.data);
 
-                // Переход к правому поддереву
-                Print(p.right, l + 3);
+                // Переход к правому поддереву.
+                Print(point.right, l + 3);
             }
         }
 
-        static public int CountElements(PointTree p)
+        static public int CountElements(Tree point)
         {
-            if (p == null || p.left == null && p.right == null)
+            if (point == null || point.left == null && point.right == null)
             {
                 return 1;
             }
 
-            int left = p.left != null ? CountElements(p.left) : 0;
-            int right = p.right != null ? CountElements(p.right) : 0;
+            int left = point.left != null ? CountElements(point.left) : 0;
+            int right = point.right != null ? CountElements(point.right) : 0;
 
             return left + right + 1;
         }
 
-        // Высота дерева
-        public static int Height(PointTree point)
+        // Высота дерева.
+        public static int Height(Tree point)
         {
             if (point == null)
             {
                 return 0;
             }
 
-            // Находим высоту правой и левой ветки, и из них берем максимальную
+            // Находим высоту правой и левой ветки, и из них берем максимальную.
             return 1 + Math.Max(Height(point.left), Height(point.right));
         }
 
-        public static PointTree Add(PointTree root, double num)
+        public static Tree Add(Tree root, double num)
         {
             if (root == null)
             {
-                return new PointTree(num);
+                return new Tree(num);
             }
 
             bool isExist = num == root.data;
 
-            // Элемент уже существует
+            // Элемент уже существует.
             if (isExist)
             {
                 Console.WriteLine("Объект с таким числом уже есть в дереве: добавление невозможно");
 
-                // Найдено, не добавляем
+                // Найдено, не добавляем.
                 return root;
             }
 
@@ -115,10 +115,10 @@ namespace Practice10
             return root;
         }
 
-        // Построение идеально сбалансированного дерева
-        public static PointTree IdealTree(int size)
+        // Построение идеально сбалансированного дерева.
+        public static Tree IdealTree(int size)
         {
-            PointTree p;
+            Tree p;
             int nl, nr;
 
             if (size == 0)
@@ -129,7 +129,7 @@ namespace Practice10
             nl = size / 2;
             nr = size - nl - 1;
 
-            p = new PointTree(rand.Next(-2000, 2000));
+            p = new Tree(rand.Next(-2000, 2000));
             p.left = IdealTree(nl);
             p.right = IdealTree(nr);
             return p;
@@ -212,7 +212,7 @@ namespace Practice10
             Console.WriteLine(hello);
 
 
-            PointTree tree = null;
+            Tree tree = null;
 
 
             while (true)
@@ -225,14 +225,14 @@ namespace Practice10
 
                 switch (option)
                 {
-                    // Создание дерева
+                    // Создание дерева.
                     case 0:
                         Console.WriteLine("Введите число элементов дерева от 0 до 50:");
-                        tree = PointTree.IdealTree(InputInt(0, 50));
+                        tree = Tree.IdealTree(InputInt(0, 50));
                         Console.WriteLine("Дерево создано");
                         Console.ReadLine();
                         break;
-                    // Печать списка
+                    // Печать списка.
                     case 1:
                         if (tree == null)
                         {
@@ -241,20 +241,21 @@ namespace Practice10
                             break;
                         }
 
-                        PointTree.Print(tree);
+                        Tree.Print(tree);
                         Console.ReadLine();
                         break;
-                    // Добавление вершины
+                    // Добавление вершины.
                     case 2:
                         Console.WriteLine("Введите элемент для добавления от -2000 до 2000:");
-                        tree = PointTree.Add(tree, InputInt(-2000, 2000));
+                        tree = Tree.Add(tree, InputInt(-2000, 2000));
                         Console.WriteLine("Элемент добавлен");
                         Console.ReadLine();
 
                         break;
-                    // Выход из программы
+                    // Выход из программы.
                     case 3:
-                        return;
+                       Environment.Exit(0);
+                        break;
                 }
             }
         }

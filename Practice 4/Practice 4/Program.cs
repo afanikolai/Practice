@@ -10,8 +10,7 @@ namespace Practice_4
     // Даны натуральное число n и целые числа a[1] ... a[n], принимающие значения "0" либо "1", при том, что а[n] != 0.
     // Последовательность a[n]*2^n + ... + a[0] задает двочиное представление целого числа p.
     // Вернуть последовательность, задающую представление числа p - 1.
-
-
+    
     class Program
     {
 
@@ -76,23 +75,6 @@ namespace Practice_4
             Console.CursorVisible = true;
             return option;
         }
-
-        //// Функция для перевода последоваетльности нулей и единиц в десятичную систему. 
-        //static int Transfer(params int[] mas)
-        //{
-        //    int tmp = 0;
-        //    int sum = 0;
-        //    for (int i= mas.Length-1; i > -1; i--)
-        //    {
-        //        sum += (int)Math.Pow(2, tmp) * mas[i];
-        //        tmp++;
-        //    }
-        //    return sum;
-        //}
-
-
-
-
 
         static void Main(string[] args)
         {
@@ -174,7 +156,6 @@ namespace Practice_4
                                     break;
                             }
 
-
                         }
                         break;
 
@@ -215,11 +196,8 @@ namespace Practice_4
                                 // Преобразование строки двоичного кода в целое число.
                                 int ch = Convert.ToInt32(str, 2);
 
-                                
-                                
                                     // Вывод целого числа.
                                     Console.WriteLine(ch);
-                                
                                 
                                 Console.ReadLine();
                             }
@@ -240,7 +218,6 @@ namespace Practice_4
                 }
 
             }   // Бесконечный цикл. 
-
         }
     }
 }
