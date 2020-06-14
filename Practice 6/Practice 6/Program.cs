@@ -62,14 +62,14 @@ namespace Practice_6
                 // Чтение файла.
                 string[] strmas = input.ReadLine().Split(' ');
                 mas = new float[int.Parse(strmas[0])];
-                max = int.Parse(strmas[1]);
+                max = float.Parse(strmas[1]);
 
                 strmas = input.ReadLine().Split(' ');
-                mas[0] = int.Parse(strmas[0]);
+                mas[0] = float.Parse(strmas[0]);
                 Console.WriteLine($"1-ый элемент: {mas[0]}");
-                mas[1] = int.Parse(strmas[1]);
+                mas[1] = float.Parse(strmas[1]);
                 Console.WriteLine($"2-ый элемент: {mas[1]}");
-                mas[2] = int.Parse(strmas[2]);
+                mas[2] = float.Parse(strmas[2]);
                 Console.WriteLine($"3-ый элемент: {mas[2]}");
 
                 

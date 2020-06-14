@@ -141,6 +141,8 @@ namespace Practice_4
                                             str = input.ReadLine();
                                             input.Close();
 
+                                            // Проверка на систему счисления.
+                                            Convert.ToInt32(str, 2);
                                         }
                                         catch (Exception exception)
                                         {
@@ -158,6 +160,9 @@ namespace Practice_4
                                             Console.Write("Для ввода последовательности c клавиатуры не используйте пробел и " +
                                                 "знаки препинания. \nВаша последовательность: ");
                                             str = Console.ReadLine();
+
+                                            // Проверка на систему счисления.
+                                            Convert.ToInt32(str, 2);
                                         }
                                         catch (Exception exception)
                                         {
@@ -210,15 +215,12 @@ namespace Practice_4
                                 // Преобразование строки двоичного кода в целое число.
                                 int ch = Convert.ToInt32(str, 2);
 
-                                if (ch >= 0)    // Если результат положителен.
-                                {
+                                
+                                
                                     // Вывод целого числа.
                                     Console.WriteLine(ch);
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Ошибка! Число должно быть больше нуля. ");
-                                }
+                                
+                                
                                 Console.ReadLine();
                             }
                             catch (Exception exception)
